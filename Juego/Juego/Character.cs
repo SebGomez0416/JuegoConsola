@@ -17,12 +17,7 @@ namespace Juego
             _x = posX;
             _y = posY;
         }
-
-        public string MODEL
-        {
-            get { return _model; }
-        }
-
+        
         public int X
         {
             set { _x = value; }
@@ -34,6 +29,14 @@ namespace Juego
         {
             set { _y = value; }
             get { return _y; }
+        }
+
+        public void Draw()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(_x, _y);
+            Console.Write(_model);
+            
         }
     }
 }

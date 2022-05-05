@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Juego
 {
@@ -12,7 +13,9 @@ namespace Juego
 
         public void Init()
         {
-             player= new Character(0,0);
+            player= new Character(60,25);
+            Console.CursorVisible=false;
+
         }
 
         public void GameLoop()
@@ -28,20 +31,13 @@ namespace Juego
 
         private void Input()
         {
-            ConsoleKeyInfo cki = Console.ReadKey(true);
-
-            if (cki.Key == ConsoleKey.D)
-            {
-                player.X += 1;
-            }
-
+            InputPlayer.Input(player);
         }       
         
         private void Draw()
         {
-            Console.Clear();
-            Console.SetCursorPosition(player.X, player.Y);
-            Console.Write(player.MODEL);            
+            player.Draw();
+            Thread.Sleep(100);
         }
 
 

@@ -10,10 +10,12 @@ namespace Juego
     class Game
     {
         Character player;
+        Enemy enemy;
 
         public void Init()
         {
             player= new Character(60,25);
+            enemy = new Enemy(20,5);
             Console.CursorVisible=false;
 
         }
@@ -23,7 +25,7 @@ namespace Juego
             do
             {
                 Input();
-                //Update();
+                Update();
                 Draw();
 
             } while (true);
@@ -32,12 +34,20 @@ namespace Juego
         private void Input()
         {
             InputPlayer.Input(player);
-        }       
+            enemy.Move();
+        }
+        
+        private void Update()
+        {
+
+        }
         
         private void Draw()
         {
+            Console.Clear();
             player.Draw();
-            Thread.Sleep(100);
+            enemy.Draw();
+            Thread.Sleep(200);
         }
 
 

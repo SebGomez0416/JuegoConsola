@@ -6,35 +6,28 @@ using System.Threading.Tasks;
 
 namespace Juego
 {
-    class Character
+    class Enemy
     {
-        private string _model = "X";
+
+        private string _model = "O";
         private int _x;
         private int _y;
 
-        public Character(int posX , int posY)
+        public Enemy(int posX, int posY)
         {
             _x = posX;
             _y = posY;
         }
-        
-        public int X
-        {
-            set { _x = value; }
-            get { return _x; }
 
-        }
-
-        public int Y
+        public void Move()
         {
-            set { _y = value; }
-            get { return _y; }
+
         }
 
         public void Draw()
-        {            
+        {
             Console.SetCursorPosition(_x, _y);
-            Console.Write(_model);            
+            Console.Write(_model);
         }
     }
 }

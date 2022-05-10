@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Juego
 {
     class Character
     {
-        private string _model = "X";
-        private int _x;
-        private int _y;
+        protected char _model;
+        protected int _x;
+        protected int _y;
+        private int minX= 0;
+        private int maxX= 44;
+        private int minY=3;
+        private int maxY=28;
 
-        public Character(int posX , int posY)
+        public Character(int posX , int posY, char model)
         {
             _x = posX;
             _y = posY;
+            _model = model;
         }
         
         public int X
@@ -29,6 +30,14 @@ namespace Juego
         {
             set { _y = value; }
             get { return _y; }
+        }
+
+        public void Limit()
+        {
+            if (_x < minX) _x = minX;
+            if (_x > maxX) _x = maxX;
+            if (_y < minY) _y = minY;
+            if (_y > maxY) _y = maxY;
         }
 
         public void Draw()

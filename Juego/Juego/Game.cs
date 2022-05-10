@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace Juego
 {
+
+    // tamaño consola 45 x 30 
+    //limite y=28;
+    //limite x= 44;
     class Game
     {
         Character player;
@@ -14,10 +14,9 @@ namespace Juego
 
         public void Init()
         {
-            player= new Character(60,25);
-            enemy = new Enemy(20,5);
+            player= new Character(20,20, 'X');
+            enemy = new Enemy(20,4,'O');
             Console.CursorVisible=false;
-
         }
 
         public void GameLoop()
@@ -33,13 +32,14 @@ namespace Juego
 
         private void Input()
         {
-            InputPlayer.Input(player);
-            enemy.Move();
+            InputPlayer.Input(player);           
         }
         
         private void Update()
         {
-
+            player.Limit();
+            enemy.Move();
+           
         }
         
         private void Draw()

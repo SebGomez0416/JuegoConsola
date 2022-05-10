@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Juego
 {
-    class Enemy
+    class Enemy:Character
     {
+        Random rnd = new Random();
 
-        private string _model = "O";
-        private int _x;
-        private int _y;
-
-        public Enemy(int posX, int posY)
+        public Enemy(int posX, int posY, char model):base(posX,posY,model)
         {
-            _x = posX;
-            _y = posY;
+            
         }
 
         public void Move()
         {
-
-        }
-
-        public void Draw()
-        {
-            Console.SetCursorPosition(_x, _y);
-            Console.Write(_model);
-        }
+            if (rnd.Next(0, 2) == 0)
+            {               
+                if (rnd.Next(0, 2) == 0)                
+                    _x -= 1;                
+                else _x += 1;
+            }
+            else
+            {               
+                if (rnd.Next(0, 2) == 0)
+                    _y -= 1;
+                else _y += 1;
+            }
+            Limit();
+            Thread.Sleep(200);            
+        }        
     }
 }

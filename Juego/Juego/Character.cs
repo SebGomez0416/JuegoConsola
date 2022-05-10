@@ -4,21 +4,25 @@ namespace Juego
 {
     class Character
     {
+        protected Random rnd = new Random();
         protected char _model;
         protected int _x;
         protected int _y;
-        private int minX= 0;
-        private int maxX= 44;
-        private int minY=3;
-        private int maxY=28;
+        protected int life = 5;
+        protected int score;
 
-        public Character(int posX , int posY, char model)
+        private int minX = 0;
+        private int maxX = 44;
+        private int minY = 3;
+        private int maxY = 28;
+
+        public Character(int posX, int posY, char model)
         {
             _x = posX;
             _y = posY;
             _model = model;
         }
-        
+
         public int X
         {
             set { _x = value; }
@@ -32,6 +36,19 @@ namespace Juego
             get { return _y; }
         }
 
+        public int LIFE
+        {
+            set { life = value; }
+            get { return life; }
+        }
+
+        public int SCORE
+        {
+            set { score = value; }
+            get { return score; }
+        }
+
+
         public void Limit()
         {
             if (_x < minX) _x = minX;
@@ -43,7 +60,22 @@ namespace Juego
         public void Draw()
         {            
             Console.SetCursorPosition(_x, _y);
-            Console.Write(_model);            
+            Console.Write(_model);              
+        }
+
+        public void Collision(Enemy e)
+        {
+            if(_x == e.X && _y == e.Y)
+            {
+                LIFE -= 1;
+                Respawn();
+            }
+        }
+
+        private void Respawn()
+        {
+            _x = rnd.Next(minX,maxX);
+            _y = rnd.Next(minY, maxY);
         }
     }
 }

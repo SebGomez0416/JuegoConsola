@@ -5,7 +5,7 @@ namespace Juego
 {
     class Enemy:Character
     {
-        Random rnd = new Random();
+       
 
         public Enemy(int posX, int posY, char model):base(posX,posY,model)
         {
@@ -27,7 +27,7 @@ namespace Juego
                 else _y += 1;
             }
             Limit();
-            Thread.Sleep(200);            
+            Thread.Sleep(100);            
         }        
     }
 }

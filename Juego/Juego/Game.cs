@@ -4,9 +4,7 @@ using System.Threading;
 namespace Juego
 {
 
-    // tamaño consola 45 x 30 
-    //limite y=28;
-    //limite x= 44;
+    // tamaño consola 45 x 30    
     class Game
     {
         Character player;
@@ -39,12 +37,13 @@ namespace Juego
         {
             player.Limit();
             enemy.Move();
-           
+            player.Collision(enemy);           
         }
         
         private void Draw()
         {
             Console.Clear();
+            Hud.Draw(player,0,1);
             player.Draw();
             enemy.Draw();
             Thread.Sleep(200);

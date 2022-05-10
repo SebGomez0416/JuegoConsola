@@ -5,7 +5,7 @@ namespace Juego
    static class InputPlayer
     {
 
-        static public void Input(Character player)
+        static public void Input(Entity player)
         {
             if (Console.KeyAvailable)
             {

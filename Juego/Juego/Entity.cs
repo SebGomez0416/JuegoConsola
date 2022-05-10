@@ -2,7 +2,7 @@
 
 namespace Juego
 {
-    class Character
+    class Entity 
     {
         protected Random rnd = new Random();
         protected char _model;
@@ -10,13 +10,15 @@ namespace Juego
         protected int _y;
         protected int life = 5;
         protected int score;
+        private bool powerUp;
 
-        private int minX = 0;
-        private int maxX = 44;
-        private int minY = 3;
-        private int maxY = 28;
 
-        public Character(int posX, int posY, char model)
+        protected int minX = 0;
+        protected int maxX = 44;
+        protected int minY = 3;
+        protected int maxY = 27;
+
+        public Entity(int posX, int posY, char model)
         {
             _x = posX;
             _y = posY;
@@ -48,6 +50,12 @@ namespace Juego
             get { return score; }
         }
 
+        public bool POWERUP
+        {
+            set { powerUp = value; }
+            get { return powerUp; }
+        }
+
 
         public void Limit()
         {
@@ -61,18 +69,9 @@ namespace Juego
         {            
             Console.SetCursorPosition(_x, _y);
             Console.Write(_model);              
-        }
+        }       
 
-        public void Collision(Enemy e)
-        {
-            if(_x == e.X && _y == e.Y)
-            {
-                LIFE -= 1;
-                Respawn();
-            }
-        }
-
-        private void Respawn()
+        public void Respawn()
         {
             _x = rnd.Next(minX,maxX);
             _y = rnd.Next(minY, maxY);

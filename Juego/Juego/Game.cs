@@ -7,13 +7,15 @@ namespace Juego
     // tamaño consola 45 x 30    
     class Game
     {
-        Character player;
+        Entity player;
         Enemy enemy;
+        PowerUps powerUpAtack;
 
         public void Init()
         {
-            player= new Character(20,20, 'X');
+            player= new Entity(20,20, 'X');
             enemy = new Enemy(20,4,'O');
+            powerUpAtack = new PowerUps(20,10, '$');
             Console.CursorVisible=false;
         }
 
@@ -37,7 +39,8 @@ namespace Juego
         {
             player.Limit();
             enemy.Move();
-            player.Collision(enemy);           
+            enemy.Collision(player);
+            powerUpAtack.Collision(player);
         }
         
         private void Draw()
@@ -46,6 +49,7 @@ namespace Juego
             Hud.Draw(player,0,1);
             player.Draw();
             enemy.Draw();
+            powerUpAtack.Draw();
             Thread.Sleep(200);
         }
 

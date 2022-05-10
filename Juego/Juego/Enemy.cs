@@ -3,9 +3,8 @@ using System.Threading;
 
 namespace Juego
 {
-    class Enemy:Character
-    {
-       
+    class Enemy:Entity , Icollision
+    {     
 
         public Enemy(int posX, int posY, char model):base(posX,posY,model)
         {
@@ -28,6 +27,15 @@ namespace Juego
             }
             Limit();
             Thread.Sleep(100);            
-        }        
+        }
+
+        public void Collision(Entity  p)
+        {
+            if (_x == p.X && _y == p.Y)
+            {
+                p.LIFE -= 1;
+                p.Respawn();
+            }
+        }
     }
 }

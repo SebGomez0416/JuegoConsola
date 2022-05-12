@@ -33,8 +33,18 @@ namespace Juego
         {
             if (_x == p.X && _y == p.Y)
             {
-                p.LIFE -= 1;
-                p.Respawn();
+                if (p.POWERUP) 
+                { 
+                    p.POWERUP=false;
+                    p.SCORE+=1;
+                    Respawn();                
+                }
+                else
+                {
+                     p.LIFE -= 1;
+                     p.Respawn();
+                }
+               
             }
         }
     }

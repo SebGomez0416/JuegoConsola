@@ -14,15 +14,9 @@ namespace Juego
             if (_x == p.X && _y == p.Y)
             {
                 p.POWERUP = true;
-                Active();
+                Respawn();
             }
-        }
-
-        private void Active()
-        {
-            Console.SetCursorPosition(minX,maxY+1);
-            Console.Write("                    Atack");
-        }
+        }       
 
     }
 }

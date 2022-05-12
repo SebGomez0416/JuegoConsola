@@ -8,7 +8,12 @@ namespace Juego
         {
             Console.SetCursorPosition(x, y);
             Console.Write(" Lifes:"+ p.LIFE);
-            Console.Write("                       Score:" + p.SCORE);
+            if (p.POWERUP)
+            {
+                 Console.Write("           Atack");
+                 Console.Write("          Score:" + p.SCORE);
+            }
+            else Console.Write("                          Score:" + p.SCORE);           
         }
     }
 }

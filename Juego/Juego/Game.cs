@@ -27,7 +27,7 @@ namespace Juego
                 Update();
                 Draw();
 
-            } while (true);
+            } while (player.LIFE>0);
         }
 
         private void Input()
@@ -40,7 +40,8 @@ namespace Juego
             player.Limit();
             enemy.Move();
             enemy.Collision(player);
-            powerUpAtack.Collision(player);
+            powerUpAtack.Collision(player);           
+
         }
         
         private void Draw()
@@ -49,17 +50,12 @@ namespace Juego
             Hud.Draw(player,0,1);
             player.Draw();
             enemy.Draw();
-            powerUpAtack.Draw();
+
+            if (!player.POWERUP)
+                powerUpAtack.Draw();            
+           
             Thread.Sleep(200);
         }
-
-
-
-
-
-
-
-
 
     }
 }

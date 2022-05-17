@@ -4,7 +4,7 @@ namespace Juego
 {
     class Entity 
     {
-        protected Random rnd = new Random();
+        public Random rnd = new Random();
         protected char _model;
         protected int _x;
         protected int _y;
@@ -13,10 +13,10 @@ namespace Juego
         private bool powerUp;
 
 
-        protected int minX = 0;
-        protected int maxX = 44;
-        protected int minY = 3;
-        protected int maxY = 27;
+        public const int minX = 0;
+        public const int maxX = 44;
+        public const int minY = 3;
+        public const int maxY = 27;
 
         public Entity(int posX, int posY, char model)
         {

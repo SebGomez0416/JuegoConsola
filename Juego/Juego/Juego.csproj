@@ -43,15 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagonalMove.cs" />
+    <Compile Include="EnemyMovement.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="HorizontalMove.cs" />
     <Compile Include="Hud.cs" />
     <Compile Include="Icollision.cs" />
     <Compile Include="InputPlayer.cs" />
     <Compile Include="PowerUps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

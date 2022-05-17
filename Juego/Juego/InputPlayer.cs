@@ -5,11 +5,8 @@ namespace Juego
    static class InputPlayer
     {
        
-        static public void Input(Entity player)
+        static public void Input(Entity player, ConsoleKeyInfo cki)
         {
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo cki = Console.ReadKey(true);
                 switch (cki.Key)
                 {
                     case ConsoleKey.A :
@@ -24,17 +21,14 @@ namespace Juego
                     case ConsoleKey.S:
                         player.Y += 1;
                         break;
-                }
-            }            
+                }   
             
         }
 
 
-        static public void InputArrows(Entity player)
+        static public void InputArrows(Entity player, ConsoleKeyInfo cki)
         {
-            if (Console.KeyAvailable) 
-            {
-                ConsoleKeyInfo cki = Console.ReadKey(true);
+           
                 
                 switch (cki.Key)
                 {
@@ -51,7 +45,7 @@ namespace Juego
                         player.Y += 1;
                         break;
                 }
-            }
+            
 
         }
     }

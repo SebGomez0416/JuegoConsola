@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace Juego
 {
@@ -13,6 +15,7 @@ namespace Juego
         Enemy enemy;
         Enemy enemy_Two;
         Enemy enemy_Three;
+        List<Enemy> enemys = new List<Enemy>();
 
         PowerUps powerUpAtack;      
 
@@ -21,9 +24,13 @@ namespace Juego
             p_One= new Entity(10,26,(char)199);
             p_Two= new Entity(25,26,(char)229);
 
-            enemy = new Enemy(20,16,(char)245);
-            enemy_Two = new Enemy(2, 20, (char)245);
-            enemy_Three = new Enemy(35, 10, (char)245);
+            enemy = new Enemy(20,16,(char)245,new HorizontalMove());
+            enemy_Two = new Enemy(2, 20, (char)245,new RandMove());
+            enemy_Three = new Enemy(35, 10, (char)245,new DiagonalMove());
+
+            enemys.Add(enemy);
+            enemys.Add(enemy_Two);
+            enemys.Add(enemy_Three);
 
             powerUpAtack = new PowerUps(20,8, (char)169);           
             Console.CursorVisible=false;
@@ -41,9 +48,13 @@ namespace Juego
         }
 
         private void Input()
-        {           
-            InputPlayer.Input( p_One);
-            //InputPlayer.InputArrows(p_Two);
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo cki = Console.ReadKey(true);
+                InputPlayer.Input(p_One, cki);
+                InputPlayer.InputArrows(p_Two, cki);
+            }
         }
         
         private void Update()
@@ -67,11 +78,10 @@ namespace Juego
             p_One.Draw();
             p_Two.Draw();
 
-            enemy.Draw();
-            enemy_Two.Draw();
-            enemy_Three.Draw();
+            foreach (Enemy e in enemys)            
+                e.Draw();
 
-            if (!p_One.POWERUP && !p_One.POWERUP)
+                if (!p_One.POWERUP && !p_One.POWERUP)
                 powerUpAtack.Draw();            
            
             Thread.Sleep(200);
@@ -79,18 +89,13 @@ namespace Juego
 
         private void UpdateEnemys()
         {
-            enemy.Move();
-            enemy.Collision(p_One);
-            enemy.Collision(p_Two);
 
-            enemy_Two.DiagonalMove();
-            enemy_Two.Collision(p_One);
-            enemy_Two.Collision(p_Two);
-
-            enemy_Three.HorizontalMove();
-            enemy_Three.Collision(p_One);
-            enemy_Three.Collision(p_Two);
-
+            foreach (Enemy e in enemys)
+            {
+                e.Move();
+                e.Collision(p_One);
+                e.Collision(p_Two);
+            }
         }
 
     }
